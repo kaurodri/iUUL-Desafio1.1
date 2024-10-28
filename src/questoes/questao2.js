@@ -12,7 +12,7 @@ const criar = function (num) {
 const triangulos = [];
 
 for (let i = 1; i <= 3; i++) {
-    console.log(`\nCriação do ${i}º Triângulo:`);
+    console.log(`Criação do ${i}º Triângulo:`);
 
     const priVertice = criar('1');
     const segVertice = criar('2');
@@ -24,7 +24,7 @@ for (let i = 1; i <= 3; i++) {
     let conteudo = '';
     conteudo += `Tipo: ${triangulo.tipo()}\n`;
     conteudo += `Perímetro: ${triangulo.perimetro.toFixed(2)}\n`;
-    conteudo += `Área: ${triangulo.area.toFixed(2)}`;
+    conteudo += `Área: ${triangulo.area.toFixed(2)}\n`;
     console.log(conteudo);
 }
 
@@ -35,4 +35,14 @@ console.log(`O primeiro e segundo triângulo são ${resultado}.\n`)
 
 //clonando o primeiro triângulo:
 const trianguloClone = triangulos[0].clone();
-console.log(`O clone do primeiro triângulo tem o mesmo perímetro: ${trianguloClone.perimetro.toFixed(2)}`);
+let clone = '';
+clone += `Primeiro triângulo clonado:\n`;
+clone += `Tipo: ${trianguloClone.tipo()}\n`;
+clone += `Perímetro: ${trianguloClone.perimetro.toFixed(2)}\n`;
+clone += `Área: ${trianguloClone.area.toFixed(2)}`;
+console.log(clone);
+
+//3 triângulos usados de exemplo:
+// 1(2, 2) 2(0, 0)  3(2, 2)
+// 1(3, 0) 2(1, 2)  3(4, 2)
+// 1(4, 2) 2(2, 0)  3(4, 4)
