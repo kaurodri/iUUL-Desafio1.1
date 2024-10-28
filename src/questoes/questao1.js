@@ -6,7 +6,7 @@ const entrada = promptSync({ sigint: true });
 const criar = function () {
     const x = entrada('coordenada x: ');
     const y = entrada('coordenada y: ');
-    return new Vertice(x, y);
+    return new Vertice(Number(x), Number(y));
 };
 
 const priVertice = criar();
