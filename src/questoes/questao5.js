@@ -19,7 +19,7 @@ const formatarData = (data) => DateTime.fromFormat(data, 'dd/MM/yyyy').toFormat(
 function loopPergunta(mensagem, validar, mensagemErro) {
     let valor;
     do {
-        valor = entrada(mensagem);
+        valor = entrada(`Digite ${mensagem}`);
         if (!validar(valor)) {
             console.log(mensagemErro);
         }
@@ -28,37 +28,37 @@ function loopPergunta(mensagem, validar, mensagemErro) {
 }
 
 const nome = loopPergunta(
-    "Digite o nome (mínimo 5 caracteres): ",
+    "o nome (mínimo 5 caracteres): ",
     (valor) => regras.nome(valor),
     "Erro: Nome deve ter pelo menos 5 caracteres."
 );
 
 const cpf = loopPergunta(
-    "Digite o CPF (11 dígitos numéricos): ",
+    "o CPF (11 dígitos numéricos): ",
     (valor) => regras.cpf(valor),
     "Erro: CPF deve ter exatamente 11 dígitos numéricos."
 );
 
 const dataNascimento = loopPergunta(
-    "Digite a data de nascimento (DD/MM/AAAA): ",
+    "a data de nascimento (DD/MM/AAAA): ",
     (valor) => regras.dataNascimento(valor),
     "Erro: Data inválida ou idade menor que 18 anos."
 );
 
 const rendaMensal = loopPergunta(
-    "Digite a renda mensal: ",
+    "a renda mensal: ",
     (valor) => regras.rendaMensal(valor),
     "Erro: Renda deve ser um número ≥ 0 com duas casas decimais."
 );
 
 const estadoCivil = loopPergunta(
-    "Digite o estado civil (C, S, V ou D): ",
+    "o estado civil (C, S, V ou D): ",
     (valor) => regras.estadoCivil(valor.toUpperCase()),
     "Erro: Estado civil deve ser C, S, V ou D."
 );
 
 const dependentes = loopPergunta(
-    "Digite o número de dependentes (0 a 10): ",
+    "o número de dependentes (0 a 10): ",
     (valor) => regras.dependentes(valor),
     "Erro: Número de dependentes deve ser entre 0 e 10."
 );
