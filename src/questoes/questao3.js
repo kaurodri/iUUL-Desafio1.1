@@ -19,8 +19,7 @@ vertices.push( criar('3º') );
 
 const poligono = new Poligono(vertices);
 
-let adicionandoVertices = true;
-while (adicionandoVertices) {
+while (true) {
     const adicionar = entrada("Adicionar outro vértice? [ s / n ]: ").toLowerCase();
     if (adicionar === 's') {
         const novoVertice = criar('Novo');
@@ -28,7 +27,7 @@ while (adicionandoVertices) {
         let verificar = !poligono.addVertice(novoVertice) ? 'Este vértice já existe no polígono.' : 'Vértice adicionado com sucesso.';
         console.log(verificar);
     } else {
-        adicionandoVertices = false;
+        break;
     }
 }
     
