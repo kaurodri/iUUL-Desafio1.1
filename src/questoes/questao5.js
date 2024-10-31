@@ -27,47 +27,57 @@ function loopPergunta(mensagem, validar, mensagemErro) {
     return valor;
 }
 
-const nome = loopPergunta(
-    "o nome (mínimo 5 caracteres): ",
-    (valor) => regras.nome(valor),
-    "Erro: Nome deve ter pelo menos 5 caracteres."
-);
+const perguntas = [
+    {
+        chave: 'nome',
+        mensagem: "o nome (mínimo 5 caracteres): ",
+        validar: regras.nome,
+        erro: "Erro: Nome deve ter pelo menos 5 caracteres."
+    },
+    {
+        chave: 'cpf',
+        mensagem: "o CPF (11 dígitos numéricos): ",
+        validar: regras.cpf,
+        erro: "Erro: CPF deve ter exatamente 11 dígitos numéricos."
+    },
+    {
+        chave: 'dataNascimento',
+        mensagem: "a data de nascimento (DD/MM/AAAA): ",
+        validar: regras.dataNascimento,
+        erro: "Erro: Data inválida ou idade menor que 18 anos."
+    },
+    {
+        chave: 'rendaMensal',
+        mensagem: "a renda mensal: ",
+        validar: regras.rendaMensal,
+        erro: "Erro: Renda deve ser um número ≥ 0 com duas casas decimais."
+    },
+    {
+        chave: 'estadoCivil',
+        mensagem: "o estado civil (C, S, V ou D): ",
+        validar: (valor) => regras.estadoCivil(valor.toUpperCase()),
+        erro: "Erro: Estado civil deve ser C, S, V ou D."
+    },
+    {
+        chave: 'dependentes',
+        mensagem: "o número de dependentes (0 a 10): ",
+        validar: regras.dependentes,
+        erro: "Erro: Número de dependentes deve ser entre 0 e 10."
+    }
+];
 
-const cpf = loopPergunta(
-    "o CPF (11 dígitos numéricos): ",
-    (valor) => regras.cpf(valor),
-    "Erro: CPF deve ter exatamente 11 dígitos numéricos."
-);
+const dadosCliente = {};
 
-const dataNascimento = loopPergunta(
-    "a data de nascimento (DD/MM/AAAA): ",
-    (valor) => regras.dataNascimento(valor),
-    "Erro: Data inválida ou idade menor que 18 anos."
-);
-
-const rendaMensal = loopPergunta(
-    "a renda mensal: ",
-    (valor) => regras.rendaMensal(valor),
-    "Erro: Renda deve ser um número ≥ 0 com duas casas decimais."
-);
-
-const estadoCivil = loopPergunta(
-    "o estado civil (C, S, V ou D): ",
-    (valor) => regras.estadoCivil(valor.toUpperCase()),
-    "Erro: Estado civil deve ser C, S, V ou D."
-);
-
-const dependentes = loopPergunta(
-    "o número de dependentes (0 a 10): ",
-    (valor) => regras.dependentes(valor),
-    "Erro: Número de dependentes deve ser entre 0 e 10."
-);
+for (const { chave, mensagem, validar, erro } of perguntas) {
+    dadosCliente[chave] = loopPergunta(mensagem, validar, erro);
+}
 
 let conteudo = `\nDados do Cliente
-${`Nome:`.padEnd(20)} ${nome}
-${`CPF:`.padEnd(20)} ${formatarCPF(cpf)}
-${`Data de Nascimento:`.padEnd(20)} ${formatarData(dataNascimento)}
-${`Renda Mensal:`.padEnd(20)} R$${formatarRenda(rendaMensal)}
-${`Estado Civil:`.padEnd(20)} ${estadoCivil}
-${`Dependentes:`.padEnd(20)} ${dependentes}`;
+${`Nome:`.padEnd(20)} ${dadosCliente.nome}
+${`CPF:`.padEnd(20)} ${formatarCPF(dadosCliente.cpf)}
+${`Data de Nascimento:`.padEnd(20)} ${formatarData(dadosCliente.dataNascimento)}
+${`Renda Mensal:`.padEnd(20)} R$${formatarRenda(dadosCliente.rendaMensal)}
+${`Estado Civil:`.padEnd(20)} ${dadosCliente.estadoCivil}
+${`Dependentes:`.padEnd(20)} ${dadosCliente.dependentes}`;
+
 console.log(conteudo);
